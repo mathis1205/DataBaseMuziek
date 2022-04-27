@@ -55,20 +55,50 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="album.cs" />
+    <Compile Include="Album.xaml.cs">
+      <DependentUpon>Album.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AlbumDA.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
+    <Compile Include="Database.cs" />
+    <Compile Include="formaat.cs" />
+    <Compile Include="Formaat.xaml.cs">
+      <DependentUpon>Formaat.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FormaatDA.cs" />
+    <Compile Include="genre.cs" />
+    <Compile Include="Genre.xaml.cs">
+      <DependentUpon>Genre.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GenreDA.cs" />
+    <Compile Include="land.cs" />
+    <Compile Include="LandDA.cs" />
+    <Compile Include="muziek.cs" />
+    <Compile Include="Muziek.xaml.cs">
+      <DependentUpon>Muziek.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MuziekDA.cs" />
+    <Compile Include="Overzicht.xaml.cs">
+      <DependentUpon>Overzicht.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StartScherm.xaml.cs">
+      <DependentUpon>StartScherm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Taal.xaml.cs">
+      <DependentUpon>Taal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Zanger.xaml.cs">
+      <DependentUpon>Zanger.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Land.xaml.cs">
+      <DependentUpon>Land.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,6 +123,44 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Album.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Formaat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Genre.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Land.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Muziek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Overzicht.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StartScherm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Taal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Zanger.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
