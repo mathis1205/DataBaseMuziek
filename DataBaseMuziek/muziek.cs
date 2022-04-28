@@ -13,6 +13,7 @@ namespace DataBaseMuziek
         public string Duur { get; set; }
         public string Beoordeling { get; set; }
         public int TaalID { get; set; }
+        public int LandID { get; set; }
         public int FormaatID { get; set; }
         public int GenreID { get; set; }
         public int AlbumID { get; set; }

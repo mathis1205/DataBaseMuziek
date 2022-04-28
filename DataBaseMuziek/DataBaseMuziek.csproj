@@ -88,9 +88,11 @@
     <Compile Include="StartScherm.xaml.cs">
       <DependentUpon>StartScherm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="taal.cs" />
     <Compile Include="Taal.xaml.cs">
       <DependentUpon>Taal.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TaalDA.cs" />
     <Compile Include="Zanger.xaml.cs">
       <DependentUpon>Zanger.xaml</DependentUpon>
     </Compile>
