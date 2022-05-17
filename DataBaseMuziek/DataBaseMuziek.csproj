@@ -166,5 +166,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Abstract_Modern_dark_blue_line_colored_poster._Vector_illustration.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="music-note-icon-abstract-digital-design-blue-background-isolated-172065243.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

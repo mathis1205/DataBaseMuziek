@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DataBaseMuziek"
         mc:Ignorable="d"
-        Title="StartScherm" Height="450" Width="800">
+        Title="StartScherm" Height="450" Width="500">
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush ImageSource="/music-note-icon-abstract-digital-design-blue-background-isolated-172065243.jpg"/>
+        </Grid.Background>
+        <Label x:Name="lblWelkom" Content="Welkom" HorizontalAlignment="Left" Margin="136,48,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
