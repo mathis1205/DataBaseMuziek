@@ -33,22 +33,22 @@ namespace DataBaseMuziek
                 taal.Taal = taalDR["Taal"].ToString();
 
                 //hier voegen we de klasse toe aan de lijst van de album
-                LijstMetAlbum.Add(album);
+                LijstMetTaal.Add(taal);
             }
-            return LijstMetAlbum;
+            return LijstMetTaal;
         }
-        public static bool voegAlbumToe(album album)
+        public static bool voegTaalToe(taal _taal)
         {
             try
             {
                 //hier geven we de sql string op
-                string sql = "INSERT INTO Album (Album) VALUES (@Album) ";
+                string sql = "INSERT INTO Taal (Taal) VALUES (@Taal)";
 
                 //hier maken we de parameters aan om de dingen te kunnen aanvullen
-                SqlParameter ParAlbum = new SqlParameter("@Album", album.Album);
+                SqlParameter ParTaal = new SqlParameter("@Taal", _taal.Taal);
 
                 //hier sturen de opdracht naar de database
-                Database.ExcecuteSQL(sql, ParAlbum);
+                Database.ExcecuteSQL(sql, ParTaal);
                 return true;
             }
             catch
@@ -56,15 +56,15 @@ namespace DataBaseMuziek
                 return false;
             }
         }
-        public static bool WijzigAlbum(album album)
+        public static bool WijzigTaal(taal _taal)
         {
             try
             {
-                //We maken het statement aan om de album up te daten.
-                string sql = "UPDATE Album SET Album=@Album WHERE Album_ID=@Album_ID";
-                SqlParameter ParAlbum = new SqlParameter("@Album", album.Album);
-                SqlParameter ParAlbumID = new SqlParameter("@Album_ID", album.albumID);
-                Database.ExcecuteSQL(sql, ParAlbum, ParAlbumID);
+                //We maken het statement aan om de taal up te daten.
+                string sql = "UPDATE Taal SET Taal=@Taal WHERE Taal_ID=@Taal_ID";
+                SqlParameter ParTaal = new SqlParameter("@Taal", _taal.Taal);
+                SqlParameter ParTaalID = new SqlParameter("@Taal_ID", _taal.TaalID);
+                Database.ExcecuteSQL(sql, ParTaal, ParTaalID);
                 return true;
             }
             catch
@@ -72,14 +72,14 @@ namespace DataBaseMuziek
                 return false;
             }
         }
-        public static bool DeleteAlbum(int AlbumID)
+        public static bool DeleteTaal(int TaalID)
         {
             try
             {
-                //We maken het statement aan om de album te verwijderen.
-                string sql = "DELETE FROM Album WHERE Album_ID=@Album_ID";
-                SqlParameter parAlbumID = new SqlParameter("@Album_ID", AlbumID);
-                Database.ExcecuteSQL(sql, parAlbumID);
+                //We maken het statement aan om de taal te verwijderen.
+                string sql = "DELETE FROM Taal WHERE Taal_ID=@Taal_ID";
+                SqlParameter parTaalID = new SqlParameter("@Taal_ID", TaalID);
+                Database.ExcecuteSQL(sql, parTaalID);
                 return true;
             }
             catch

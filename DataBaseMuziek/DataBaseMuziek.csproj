@@ -93,9 +93,11 @@
       <DependentUpon>Taal.xaml</DependentUpon>
     </Compile>
     <Compile Include="TaalDA.cs" />
+    <Compile Include="zanger.cs" />
     <Compile Include="Zanger.xaml.cs">
       <DependentUpon>Zanger.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZangerDA.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Land.xaml.cs">
