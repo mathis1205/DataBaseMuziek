@@ -1,0 +1,18 @@
+﻿<Window x:Class="DataBaseMuziek.StartScherm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataBaseMuziek"
+        mc:Ignorable="d"
+        Title="StartScherm" Height="450" Width="500">
+    <Grid MouseLeftButtonUp="Grid_MouseLeftButtonUp">
+        <Grid.Background>
+            <ImageBrush ImageSource="/1.webp"/>
+        </Grid.Background>
+        <Label x:Name="lblWelkom" Content="Welkom" HorizontalAlignment="Center" Margin="0,54,0,0" VerticalAlignment="Top" Foreground="White" Height="34" Width="86" FontSize="20"/>
+        <Image x:Name="ImgLogo" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Source="/4b0801ba27a7224f7d2e43136f93fd92.png"/>
+        <Label x:Name="lblKlik" Content="Klik op het scherm om verder te gaan" HorizontalAlignment="Center" Margin="0,314,0,0" VerticalAlignment="Top" Foreground="White" Height="38" Width="344" FontSize="20" Visibility="Hidden"/>
+
+    </Grid>
+</Window>

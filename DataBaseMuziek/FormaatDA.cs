@@ -36,56 +36,6 @@ namespace DataBaseMuziek
                 LijstMetFormaat.Add(formaat);
             }
             return LijstMetFormaat;
-        }
-        public static bool voegFormaatToe(formaat formaat)
-        {
-            try
-            {
-                //hier geven we de sql string op
-                string sql = "INSERT INTO Formaat (Formaat) VALUES (@Formaat) ";
-
-                //hier maken we de parameters aan om de dingen te kunnen aanvullen
-                SqlParameter ParFormaat = new SqlParameter("@Formaat", formaat.Formaat);
-
-                //hier sturen de opdracht naar de database
-                Database.ExcecuteSQL(sql, ParFormaat);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public static bool WijzigFormaat(formaat formaat)
-        {
-            try
-            {
-                //We maken het statement aan om het formaat up te daten.
-                string sql = "UPDATE Formaat SET Formaat=@Formaat WHERE Formaat_ID=@Formaat_ID";
-                SqlParameter ParFormaat = new SqlParameter("@Formaat", formaat.Formaat);
-                SqlParameter ParFormaatID = new SqlParameter("@Formaat_ID", formaat.FormaatID);
-                Database.ExcecuteSQL(sql, ParFormaat, ParFormaatID);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public static bool DeleteFormaat(int FormaatID)
-        {
-            try
-            {
-                //We maken het statement aan om de Formaat te verwijderen.
-                string sql = "DELETE FROM Formaat WHERE Formaat_ID=@Formaat_ID";
-                SqlParameter parFormaatID = new SqlParameter("@Formaat_ID", FormaatID);
-                Database.ExcecuteSQL(sql, parFormaatID);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        }       
     }
 }

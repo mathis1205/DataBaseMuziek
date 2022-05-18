@@ -36,56 +36,6 @@ namespace DataBaseMuziek
                 LijstMetGenre.Add(genre);
             }
             return LijstMetGenre;
-        }
-        public static bool voegGenreToe(genre genre)
-        {
-            try
-            {
-                //hier geven we de sql string op
-                string sql = "INSERT INTO Genre (Genre) VALUES (@Genre) ";
-
-                //hier maken we de parameters aan om de dingen te kunnen aanvullen
-                SqlParameter ParGenre = new SqlParameter("@Genre", genre.Genre);
-
-                //hier sturen de opdracht naar de database
-                Database.ExcecuteSQL(sql, ParGenre);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public static bool WijzigGenre(genre genre)
-        {
-            try
-            {
-                //We maken het statement aan om de genre up te daten.
-                string sql = "UPDATE Genre SET Genre=@Genre WHERE Genre_ID=@Genre_ID";
-                SqlParameter ParGenre = new SqlParameter("@Album", genre.Genre);
-                SqlParameter ParGenreID = new SqlParameter("@Album_ID", genre.GenreID);
-                Database.ExcecuteSQL(sql, ParGenre, ParGenreID);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public static bool DeleteGenre(int GenreID)
-        {
-            try
-            {
-                //We maken het statement aan om de genre te verwijderen.
-                string sql = "DELETE FROM Genre WHERE Genre_ID=@Genre_ID";
-                SqlParameter parGenreID = new SqlParameter("@Genre_ID", GenreID);
-                Database.ExcecuteSQL(sql, parGenreID);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+        }        
     }
 }

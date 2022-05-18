@@ -66,14 +66,8 @@
     </Compile>
     <Compile Include="Database.cs" />
     <Compile Include="formaat.cs" />
-    <Compile Include="Formaat.xaml.cs">
-      <DependentUpon>Formaat.xaml</DependentUpon>
-    </Compile>
     <Compile Include="FormaatDA.cs" />
     <Compile Include="genre.cs" />
-    <Compile Include="Genre.xaml.cs">
-      <DependentUpon>Genre.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GenreDA.cs" />
     <Compile Include="land.cs" />
     <Compile Include="LandDA.cs" />
@@ -85,13 +79,10 @@
     <Compile Include="Overzicht.xaml.cs">
       <DependentUpon>Overzicht.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StartScherm.xaml.cs">
-      <DependentUpon>StartScherm.xaml</DependentUpon>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="taal.cs" />
-    <Compile Include="Taal.xaml.cs">
-      <DependentUpon>Taal.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TaalDA.cs" />
     <Compile Include="zanger.cs" />
     <Compile Include="Zanger.xaml.cs">
@@ -100,9 +91,6 @@
     <Compile Include="ZangerDA.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Land.xaml.cs">
-      <DependentUpon>Land.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -120,6 +108,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="1.webp" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -133,18 +122,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Formaat.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Genre.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Land.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Muziek.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,11 +130,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StartScherm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Taal.xaml">
+    <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,10 +140,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Abstract_Modern_dark_blue_line_colored_poster._Vector_illustration.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="music-note-icon-abstract-digital-design-blue-background-isolated-172065243.jpg" />
+    <Resource Include="4b0801ba27a7224f7d2e43136f93fd92.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

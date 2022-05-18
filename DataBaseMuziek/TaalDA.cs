@@ -37,55 +37,5 @@ namespace DataBaseMuziek
             }
             return LijstMetTaal;
         }
-        public static bool voegTaalToe(taal _taal)
-        {
-            try
-            {
-                //hier geven we de sql string op
-                string sql = "INSERT INTO Taal (Taal) VALUES (@Taal)";
-
-                //hier maken we de parameters aan om de dingen te kunnen aanvullen
-                SqlParameter ParTaal = new SqlParameter("@Taal", _taal.Taal);
-
-                //hier sturen de opdracht naar de database
-                Database.ExcecuteSQL(sql, ParTaal);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public static bool WijzigTaal(taal _taal)
-        {
-            try
-            {
-                //We maken het statement aan om de taal up te daten.
-                string sql = "UPDATE Taal SET Taal=@Taal WHERE Taal_ID=@Taal_ID";
-                SqlParameter ParTaal = new SqlParameter("@Taal", _taal.Taal);
-                SqlParameter ParTaalID = new SqlParameter("@Taal_ID", _taal.TaalID);
-                Database.ExcecuteSQL(sql, ParTaal, ParTaalID);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public static bool DeleteTaal(int TaalID)
-        {
-            try
-            {
-                //We maken het statement aan om de taal te verwijderen.
-                string sql = "DELETE FROM Taal WHERE Taal_ID=@Taal_ID";
-                SqlParameter parTaalID = new SqlParameter("@Taal_ID", TaalID);
-                Database.ExcecuteSQL(sql, parTaalID);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
     }
 }
