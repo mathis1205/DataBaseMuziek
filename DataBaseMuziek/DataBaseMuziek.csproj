@@ -55,42 +55,28 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="album.cs" />
     <Compile Include="Album.xaml.cs">
       <DependentUpon>Album.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AlbumDA.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Database.cs" />
-    <Compile Include="formaat.cs" />
-    <Compile Include="FormaatDA.cs" />
-    <Compile Include="genre.cs" />
-    <Compile Include="GenreDA.cs" />
-    <Compile Include="land.cs" />
-    <Compile Include="LandDA.cs" />
-    <Compile Include="muziek.cs" />
+    <Compile Include="Klassen.cs" />
+    <Compile Include="KlassenDA.cs" />
     <Compile Include="Muziek.xaml.cs">
       <DependentUpon>Muziek.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MuziekDA.cs" />
-    <Compile Include="Muziek_Zanger.cs" />
-    <Compile Include="Muziek_ZangerDA.cs" />
     <Compile Include="Overzicht.xaml.cs">
       <DependentUpon>Overzicht.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="taal.cs" />
-    <Compile Include="TaalDA.cs" />
-    <Compile Include="zanger.cs" />
     <Compile Include="Zanger.xaml.cs">
       <DependentUpon>Zanger.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ZangerDA.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
