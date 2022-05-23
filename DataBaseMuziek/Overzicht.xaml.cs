@@ -26,17 +26,32 @@ namespace DataBaseMuziek
 
         private void btnAlbum_Copy_Click(object sender, RoutedEventArgs e)
         {
+            //Nieuw scherm aanmaken en tonen.
+            Album album = new Album();
+            album.Show();
 
+            //Huidig scherm sluiten.
+            this.Close();
         }
 
         private void btnMuziek_Click(object sender, RoutedEventArgs e)
         {
+            //Nieuw scherm aanmaken en tonen.
+            Muziek muziek = new Muziek();
+            muziek.Show();
 
+            //Huidig scherm sluiten.
+            this.Close();
         }
 
         private void btnZanger_Click(object sender, RoutedEventArgs e)
         {
+            //Nieuw scherm aanmaken en tonen.
+            Zanger zanger = new Zanger();
+            zanger.Show();
 
+            //Huidig scherm sluiten.
+            this.Close();
         }
     }
 }

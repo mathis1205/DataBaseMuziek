@@ -5,8 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DataBaseMuziek"
         mc:Ignorable="d"
-        Title="Muziek" Height="450" Width="800">
+        Title="Muziek" Height="241" Width="682">
     <Grid>
-        
+        <Label x:Name="lblLiedje" Content="Liedje :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblDuur" Content="Duur :" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblBeoordeling" Content="Beoordeling :" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblTaal" Content="Taal :" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblLand" Content="Land :" HorizontalAlignment="Left" Margin="10,107,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblFormaat" Content="Formaat :" HorizontalAlignment="Left" Margin="10,131,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblGenre" Content="Genre :" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblAlbum" Content="Album :" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txbBeoordelingScore" HorizontalAlignment="Left" Margin="155,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" Text="10" HorizontalContentAlignment="Center" SelectionOpacity="100" Height="19"/>
+        <TextBox x:Name="txbBeoordeling" HorizontalAlignment="Left" Margin="95,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" HorizontalContentAlignment="Center" Height="19"/>
+        <TextBox x:Name="txbLiedje" HorizontalAlignment="Left" Margin="95,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="19"/>
+        <TextBox x:Name="txbDuur" HorizontalAlignment="Left" Margin="96,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="19"/>
+        <ComboBox x:Name="cmbTaal" HorizontalAlignment="Left" Margin="95,86,0,0" VerticalAlignment="Top" Width="120" Height="19"/>
+        <ComboBox x:Name="cmbLand" HorizontalAlignment="Left" Margin="95,110,0,0" VerticalAlignment="Top" Width="120" Height="19"/>
+        <ComboBox x:Name="cmbFormaat" HorizontalAlignment="Left" Margin="95,134,0,0" VerticalAlignment="Top" Width="120" Height="19"/>
+        <ComboBox x:Name="cmbGenre" HorizontalAlignment="Left" Margin="95,158,0,0" VerticalAlignment="Top" Width="120" Height="19"/>
+        <ComboBox x:Name="cmbAlbum" HorizontalAlignment="Left" Margin="95,182,0,0" VerticalAlignment="Top" Width="120" Height="19"/>
+        <ListBox x:Name="lsbMuziek" Margin="356,14,0,0" Width="296" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" Height="187" />
+        <Button x:Name="btnToevoegen" Content="Toevoegen" HorizontalAlignment="Left" Margin="221,14,0,0" VerticalAlignment="Top" Width="120" Height="43" Click="btnToevoegen_Click"/>
+        <Button x:Name="btnVerwijderen" Content="Verwijderen" HorizontalAlignment="Left" Margin="221,62,0,0" VerticalAlignment="Top" Width="120" Height="43" Click="btnVerwijderen_Click"/>
+        <Button x:Name="btnWijzigen" Content="Wijzigen" HorizontalAlignment="Left" Margin="220,110,0,0" VerticalAlignment="Top" Width="120" Height="43" Click="btnWijzigen_Click"/>
+        <Button x:Name="btnRefresh" Content="Lijst herladen" HorizontalAlignment="Left" Margin="221,158,0,0" VerticalAlignment="Top" Width="119" Height="19" Click="btnRefresh_Click"/>
+        <Button x:Name="btnAlbum" Content="..." HorizontalAlignment="Left" Margin="221,181,0,0" VerticalAlignment="Top" Width="20" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnAlbum_Click"/>
+
     </Grid>
 </Window>

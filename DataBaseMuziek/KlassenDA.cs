@@ -326,8 +326,10 @@ namespace DataBaseMuziek
             //het uitlezen van de database
             //we maken een lijst aan voor de landen in te plaatsen
             List<land> LijstMetLanden = new List<land>();
+
             //We maken het statement aan om de landen uit te lezen
-            string sSql = "Select Land_ID, Land FROM dbo.Landen";
+            string sSql = "Select Land_ID, Land, Continent FROM dbo.Land";
+
             //hier gaan we de verschillende dingen ophalen uit de database
             //we plaatsen dit in een datatabel
             DataTable LandDT = Database.GetDT(sSql);
@@ -335,11 +337,12 @@ namespace DataBaseMuziek
             foreach (DataRow LandDR in LandDT.Rows)
             {
                 land land = new land();
-                //oEvaluatie.iAccountID = Int32.Parse(EvaluatieDR["Account_ID"].ToString());
+
                 //hier vullen we de gegevens in in de aangemaakte klasse
                 land.LandID = int.Parse(LandDR["Land_ID"].ToString());
                 land.Land = LandDR["Land"].ToString();
-                land.Continent = LandDR["Land"].ToString();
+                land.Continent = LandDR["Continent"].ToString();
+
                 //hier voegen we de klasse toe aan de lijst van de landen
                 LijstMetLanden.Add(land);
             }
