@@ -76,6 +76,8 @@
       <DependentUpon>Muziek.xaml</DependentUpon>
     </Compile>
     <Compile Include="MuziekDA.cs" />
+    <Compile Include="Muziek_Zanger.cs" />
+    <Compile Include="Muziek_ZangerDA.cs" />
     <Compile Include="Overzicht.xaml.cs">
       <DependentUpon>Overzicht.xaml</DependentUpon>
     </Compile>

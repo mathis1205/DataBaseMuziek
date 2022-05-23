@@ -29,7 +29,7 @@ namespace DataBaseMuziek
             get
             {
                 //het aanspreken van de database via de setting.setting interface.
-                string connectionString = "Server=F1764;Database=personeelsgegevens;Trusted_Connection=Yes";
+                string connectionString = "Server=F1764;Database=MuziekDatabase;Trusted_Connection=Yes";
                 return connectionString;
             }
         }
