@@ -19,7 +19,7 @@ namespace DataBaseMuziek
         public int FormaatID { get; set; }
         public string Formaat { get; set; }
     }
-    internal class album
+    public class album
     {
         public int albumID { get; set; }
         public string Album { get; set; }

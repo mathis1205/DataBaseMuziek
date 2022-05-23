@@ -344,56 +344,7 @@ namespace DataBaseMuziek
                 LijstMetLanden.Add(land);
             }
             return LijstMetLanden;
-        }
-        public static bool voegLandToe(land landen)
-        {
-            try
-            {
-                //hier geven we de sql string op
-                string sql = "INSERT INTO Landen (Land) VALUES (@Land) ";
-                //hier maken we de parameters aan om de dingen te kunnen aanvullen
-                SqlParameter ParLand = new SqlParameter("@Land", landen.Land);
-                SqlParameter ParContinent = new SqlParameter("@Land", landen.Continent);
-                //hier sturen de opdracht naar de database
-                Database.ExcecuteSQL(sql, ParLand);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public static bool WijzigLand(land landen)
-        {
-            try
-            {
-                string sql = "UPDATE Land SET Land=@Land WHERE Land_ID=@LandID";
-                SqlParameter ParLand = new SqlParameter("@Land", landen.Land);
-                SqlParameter ParLandID = new SqlParameter("@LandID", landen.LandID);
-                SqlParameter ParContinent = new SqlParameter("@Land", landen.Continent);
-                Database.ExcecuteSQL(sql, ParLand, ParLandID);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-        public static bool DeleteLand(int landID)
-        {
-            try
-            {
-                string sql = "DELETE FROM Land WHERE Land_ID=@Land_ID";
-                SqlParameter parLandID = new SqlParameter("@Land_ID", landID);
-                Database.ExcecuteSQL(sql, parLandID);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
+        }       
     }
     public class GenreDA
     {

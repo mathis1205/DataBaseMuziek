@@ -23,5 +23,20 @@ namespace DataBaseMuziek
         {
             InitializeComponent();
         }
+
+        private void btnAlbum_Copy_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMuziek_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnZanger_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

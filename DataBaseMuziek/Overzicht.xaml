@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DataBaseMuziek"
         mc:Ignorable="d"
-        Title="Overzicht" Height="450" Width="800">
+        Title="Overzicht" Height="141" Width="155">
     <Grid>
-        
+        <Button x:Name="btnMuziek" Content="Muziek" HorizontalAlignment="Left" Height="25" Margin="10,40,0,0" VerticalAlignment="Top" Width="120" Click="btnMuziek_Click"/>
+        <Button x:Name="btnAlbum_Copy" Content="Album" HorizontalAlignment="Left" Height="25" Margin="10,10,0,0" VerticalAlignment="Top" Width="120" Click="btnAlbum_Copy_Click"/>
+        <Button x:Name="btnZanger" Content="Zanger" HorizontalAlignment="Left" Height="25" Margin="10,70,0,0" VerticalAlignment="Top" Width="120" Click="btnZanger_Click"/>
+
     </Grid>
 </Window>
