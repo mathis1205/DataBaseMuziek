@@ -71,11 +71,19 @@ namespace DataBaseMuziek
             //Listbox leegmaken.
             lsbMuziek.Items.Clear();
 
-            LijstMetMuziek = MuziekDA.HaalGegevensOp();
-            foreach (muziek _muziek in LijstMetMuziek)
+            //Listbox invullen.
+            foreach (var item in MuziekDA.HaalGegevensOp())
             {
-                lsbMuziek.Items.Add($"{_muziek.Liedje}  {_muziek.Duur}  {_muziek.Beoordeling}  {_muziek.TaalID}  {_muziek.Liedje}  {_muziek.FormaatID}  {_muziek.GenreID}  {_muziek.AlbumID}");
-            }            
+                LijstMetMuziek.Add(item);
+                lsbMuziek.Items.Add($"{item.Liedje}");
+            }
+        }
+
+        private void WpfUpdaten()
+        {
+            //WPF updaten.
+            ListboxInvullen();
+            txbBeoordeling.Text = txbDuur.Text = txbLiedje.Text = cmbAlbum.Text = cmbFormaat.Text = cmbGenre.Text = cmbLand.Text = cmbTaal.Text = "";
         }
 
         private void btnToevoegen_Click(object sender, RoutedEventArgs e)
@@ -83,7 +91,28 @@ namespace DataBaseMuziek
             //Foutenopvang.
             try
             {
+                //Controle op invoer.
+                if(txbLiedje.Text != "" && txbDuur.Text != "" && txbBeoordeling.Text != "")
+                {
+                    //Controle op selectie.
+                    if(cmbAlbum.SelectedIndex != -1 && cmbFormaat.SelectedIndex != -1 && cmbGenre.SelectedIndex != -1 && cmbLand.SelectedIndex != -1 && cmbTaal.SelectedIndex != -1)
+                    {
+                        //Klasse aanmaken.
+                        muziek _muziek = new muziek();
 
+                        WpfUpdaten();
+                    }
+                    else
+                    {
+                        //Melding tonen wanneer niet alles geselecteerd is.
+                        MessageBox.Show("U heeft niet alles geselecteerd, gelieve alles te selecteren.", "Geen selectie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                }
+                else
+                {
+                    //Melding tonen wanneer niet alles is ingevuld.
+                    MessageBox.Show("U heeft niet alles ingevuld, gelieve alles in te vullen.", "Geen invoer", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
             //Error tonen wanneer er iets niet klopt.
             catch (Exception error)
@@ -98,7 +127,7 @@ namespace DataBaseMuziek
             //Foutenopvang.
             try
             {
-
+                WpfUpdaten();
             }
             //Error tonen wanneer er iets niet klopt.
             catch (Exception error)
@@ -113,7 +142,7 @@ namespace DataBaseMuziek
             //Foutenopvang.
             try
             {
-                
+                WpfUpdaten();
             }
             //Error tonen wanneer er iets niet klopt.
             catch(Exception error)
@@ -121,11 +150,6 @@ namespace DataBaseMuziek
                 //Error tonen.
                 MessageBox.Show(error.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-        }
-
-        private void btnRefresh_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void btnAlbum_Click(object sender, RoutedEventArgs e)

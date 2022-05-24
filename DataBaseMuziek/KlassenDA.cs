@@ -171,20 +171,21 @@ namespace DataBaseMuziek
             try
             {
                 //hier geven we de sql string op
-                string sql = "INSERT INTO Muziek (Muziek) VALUES (@Muziek) ";
+                string sql = "INSERT INTO Muziek (Muziek_ID, Liedje, Duur, Beoordeling, TaalID, LandID, FormaatID, GenreID, AlbumID) VALUES (@Muziek_ID, @Liedje, @Duur, @Beoordeling, @TaalID, @LandID, @FormaatID, GenreIDn AlbumID)";
 
                 //hier maken we de parameters aan om de dingen te kunnen aanvullen
-                SqlParameter ParMuziek = new SqlParameter("@Muziek", muziek.Liedje);
-                SqlParameter ParDuur = new SqlParameter("@Muziek", muziek.Duur);
-                SqlParameter ParBeoordeling = new SqlParameter("@Muziek", muziek.Beoordeling);
-                SqlParameter ParTaalID = new SqlParameter("@Muziek", muziek.TaalID);
-                SqlParameter ParLandID = new SqlParameter("@Muziek", muziek.LandID);
-                SqlParameter ParFormaatID = new SqlParameter("@Muziek", muziek.FormaatID);
-                SqlParameter ParGenreID = new SqlParameter("@Muziek", muziek.GenreID);
-                SqlParameter ParAlbumID = new SqlParameter("@Muziek", muziek.AlbumID);
+                SqlParameter ParMuziekID = new SqlParameter("@Muziek_ID", muziek.MuziekID);
+                SqlParameter ParLiedje = new SqlParameter("@Liedje", muziek.Liedje);
+                SqlParameter ParDuur = new SqlParameter("@Duur", muziek.Duur);
+                SqlParameter ParBeoordeling = new SqlParameter("@Beoordeling", muziek.Beoordeling);
+                SqlParameter ParTaalID = new SqlParameter("@TaalID", muziek.TaalID);
+                SqlParameter ParLandID = new SqlParameter("@LandID", muziek.LandID);
+                SqlParameter ParFormaatID = new SqlParameter("@FormaatID", muziek.FormaatID);
+                SqlParameter ParGenreID = new SqlParameter("@GenreID", muziek.GenreID);
+                SqlParameter ParAlbumID = new SqlParameter("@AlbumID", muziek.AlbumID);
 
                 //hier sturen de opdracht naar de database
-                Database.ExcecuteSQL(sql, ParMuziek, ParDuur, ParBeoordeling, ParTaalID, ParLandID, ParFormaatID, ParGenreID, ParAlbumID);
+                Database.ExcecuteSQL(sql, ParMuziekID, ParLiedje, ParDuur, ParBeoordeling, ParTaalID, ParLandID, ParFormaatID, ParGenreID, ParAlbumID);
                 return true;
             }
             catch
@@ -197,19 +198,20 @@ namespace DataBaseMuziek
             try
             {
                 //We maken het statement aan om de muziek up te daten.
-                string sql = "UPDATE Muziek SET Muziek=@Muziek WHERE Muziek_ID=@Muziek_ID";
-                SqlParameter ParMuziek = new SqlParameter("@Muziek", muziek.Liedje);
-                SqlParameter ParMuziekID = new SqlParameter("@Muziek", muziek.MuziekID);
-                SqlParameter ParDuur = new SqlParameter("@Muziek", muziek.Duur);
-                SqlParameter ParBeoordeling = new SqlParameter("@Muziek", muziek.Beoordeling);
-                SqlParameter ParTaalID = new SqlParameter("@Muziek", muziek.TaalID);
-                SqlParameter ParLandID = new SqlParameter("@Muziek", muziek.LandID);
-                SqlParameter ParFormaatID = new SqlParameter("@Muziek", muziek.FormaatID);
-                SqlParameter ParGenreID = new SqlParameter("@Muziek", muziek.GenreID);
-                SqlParameter ParAlbumID = new SqlParameter("@Muziek", muziek.AlbumID);
+                string sql = "UPDATE Muziek SET Liedje=@Liedje, Duur=@Duur, Beoordeling=@Beoordeling, Taal_ID=@TaalID, Land_ID=@LandID, Formaat_ID=@FormaatID, Genre_ID=@GenreID, Album_ID=@AlbumID  WHERE Muziek_ID=@Muziek_ID";
+                //hier maken we de parameters aan om de dingen te kunnen aanvullen
+                SqlParameter ParMuziekID = new SqlParameter("@Muziek_ID", muziek.MuziekID);
+                SqlParameter ParLiedje = new SqlParameter("@Liedje", muziek.Liedje);
+                SqlParameter ParDuur = new SqlParameter("@Duur", muziek.Duur);
+                SqlParameter ParBeoordeling = new SqlParameter("@Beoordeling", muziek.Beoordeling);
+                SqlParameter ParTaalID = new SqlParameter("@TaalID", muziek.TaalID);
+                SqlParameter ParLandID = new SqlParameter("@LandID", muziek.LandID);
+                SqlParameter ParFormaatID = new SqlParameter("@FormaatID", muziek.FormaatID);
+                SqlParameter ParGenreID = new SqlParameter("@GenreID", muziek.GenreID);
+                SqlParameter ParAlbumID = new SqlParameter("@AlbumID", muziek.AlbumID);
 
                 //hier sturen de opdracht naar de database
-                Database.ExcecuteSQL(sql, ParMuziekID, ParMuziek, ParDuur, ParBeoordeling, ParTaalID, ParLandID, ParFormaatID, ParGenreID, ParAlbumID);
+                Database.ExcecuteSQL(sql, ParMuziekID, ParLiedje, ParDuur, ParBeoordeling, ParTaalID, ParLandID, ParFormaatID, ParGenreID, ParAlbumID);
                 return true;
             }
             catch
