@@ -99,6 +99,14 @@ namespace DataBaseMuziek
                     {
                         //Klasse aanmaken.
                         muziek _muziek = new muziek();
+                        _muziek.Liedje = txbLiedje.Text;
+                        _muziek.Duur = txbDuur.Text;
+                        _muziek.Beoordeling = txbBeoordeling.Text;
+                        _muziek.TaalID = LijstMetTalen[cmbTaal.SelectedIndex].TaalID;
+                        _muziek.LandID = LijstMetLanden[cmbLand.SelectedIndex].LandID;
+                        _muziek.FormaatID = LijstMetFormaten[cmbFormaat.SelectedIndex].FormaatID;
+                        _muziek.GenreID = LijstMetGernes[cmbGenre.SelectedIndex].GenreID;
+                        _muziek.AlbumID = LijstMetAlbums[cmbAlbum.SelectedIndex].albumID;
 
                         WpfUpdaten();
                     }

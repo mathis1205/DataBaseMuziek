@@ -171,10 +171,9 @@ namespace DataBaseMuziek
             try
             {
                 //hier geven we de sql string op
-                string sql = "INSERT INTO Muziek (Muziek_ID, Liedje, Duur, Beoordeling, TaalID, LandID, FormaatID, GenreID, AlbumID) VALUES (@Muziek_ID, @Liedje, @Duur, @Beoordeling, @TaalID, @LandID, @FormaatID, GenreIDn AlbumID)";
+                string sql = "INSERT INTO Muziek (Liedje, Duur, Beoordeling, TaalID, LandID, FormaatID, GenreID, AlbumID) VALUES (@Liedje, @Duur, @Beoordeling, @TaalID, @LandID, @FormaatID, GenreIDn AlbumID)";
 
-                //hier maken we de parameters aan om de dingen te kunnen aanvullen
-                SqlParameter ParMuziekID = new SqlParameter("@Muziek_ID", muziek.MuziekID);
+                //hier maken we de parameters aan om de dingen te kunnen aanvullen.
                 SqlParameter ParLiedje = new SqlParameter("@Liedje", muziek.Liedje);
                 SqlParameter ParDuur = new SqlParameter("@Duur", muziek.Duur);
                 SqlParameter ParBeoordeling = new SqlParameter("@Beoordeling", muziek.Beoordeling);
@@ -185,7 +184,7 @@ namespace DataBaseMuziek
                 SqlParameter ParAlbumID = new SqlParameter("@AlbumID", muziek.AlbumID);
 
                 //hier sturen de opdracht naar de database
-                Database.ExcecuteSQL(sql, ParMuziekID, ParLiedje, ParDuur, ParBeoordeling, ParTaalID, ParLandID, ParFormaatID, ParGenreID, ParAlbumID);
+                Database.ExcecuteSQL(sql, ParLiedje, ParDuur, ParBeoordeling, ParTaalID, ParLandID, ParFormaatID, ParGenreID, ParAlbumID);
                 return true;
             }
             catch
