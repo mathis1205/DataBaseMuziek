@@ -65,7 +65,7 @@ namespace DataBaseMuziek
         private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             //Zorgen dat je pas naar het volgende scherm gaat wanneer de label zichtbaar is.
-            if (i > 3)
+            if (i >= 3)
             {
                 //Nieuw scherm aanmaken en tonen.
                 Overzicht overzicht = new Overzicht();

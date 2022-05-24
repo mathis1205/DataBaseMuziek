@@ -11,17 +11,17 @@ namespace DataBaseMuziek
     }
     public class genre
     {
-        public int GenreID { get; set; }
+        public int Genre_ID { get; set; }
         public string Genre { get; set; }
     }
     public class formaat
     {
-        public int FormaatID { get; set; }
+        public int Formaat_ID { get; set; }
         public string Formaat { get; set; }
     }
     public class album
     {
-        public int albumID { get; set; }
+        public int album_ID { get; set; }
         public string Album { get; set; }
     }
     public class Muziek_Zanger
@@ -32,21 +32,21 @@ namespace DataBaseMuziek
     }
     public class land
     {
-        public int LandID { get; set; }
+        public int Land_ID { get; set; }
         public string Land { get; set; }
         public string Continent { get; set; }
     }
     public class muziek
     {
-        public int MuziekID { get; set; }
+        public int Muziek_ID { get; set; }
         public string Liedje { get; set; }
         public string Duur { get; set; }
-        public string Beoordeling { get; set; }
-        public int TaalID { get; set; }
-        public int LandID { get; set; }
-        public int FormaatID { get; set; }
-        public int GenreID { get; set; }
-        public int AlbumID { get; set; }
+        public int Beoordeling { get; set; }
+        public int Taal_ID { get; set; }
+        public int Land_ID { get; set; }
+        public int Formaat_ID { get; set; }
+        public int Genre_ID { get; set; }
+        public int Album_ID { get; set; }
     }
     public class zanger
     {
@@ -58,7 +58,7 @@ namespace DataBaseMuziek
     }
     public class taal
     {
-        public int TaalID { get; set; }
+        public int Taal_ID { get; set; }
         public string Taal { get; set; }
     }
 }

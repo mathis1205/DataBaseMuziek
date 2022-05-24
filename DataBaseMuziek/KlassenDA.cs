@@ -8,9 +8,6 @@ using System.Threading.Tasks;
 
 namespace DataBaseMuziek
 {
-    internal class KlassenDA
-    {
-    }
     public class ZangerDA
     {
         public static List<zanger> HaalGegevensOp()
@@ -121,7 +118,7 @@ namespace DataBaseMuziek
                 taal taal = new taal();
 
                 //hier vullen we de gegevens in in de aangemaakte klasse
-                taal.TaalID = int.Parse(taalDR["Taal_ID"].ToString());
+                taal.Taal_ID = int.Parse(taalDR["Taal_ID"].ToString());
                 taal.Taal = taalDR["Taal"].ToString();
 
                 //hier voegen we de klasse toe aan de lijst van de album
@@ -139,7 +136,7 @@ namespace DataBaseMuziek
             List<muziek> LijstMetMuziek = new List<muziek>();
 
             //We maken het statement aan om de album uit te lezen
-            string sSql = "Select Muziek_ID, Muziek FROM dbo.Muziek";
+            string sSql = "Select Muziek_ID, Liedje, Duur, Beoordeling, Taal_ID, Land_ID, Formaat_ID, Genre_ID, Album_ID FROM dbo.Muziek";
 
             //hier gaan we de verschillende dingen ophalen uit de database
             //we plaatsen dit in een datatabel
@@ -151,15 +148,15 @@ namespace DataBaseMuziek
                 muziek muziek = new muziek();
 
                 //hier vullen we de gegevens in in de aangemaakte klasse
-                muziek.MuziekID = int.Parse(muziekDR["Muziek_ID"].ToString());
+                muziek.Muziek_ID = int.Parse(muziekDR["Muziek_ID"].ToString());
                 muziek.Liedje = muziekDR["Liedje"].ToString();
                 muziek.Duur = muziekDR["Duur"].ToString();
-                muziek.Beoordeling = muziekDR["Bedoordeling"].ToString();
-                muziek.TaalID = int.Parse(muziekDR["Taal_ID"].ToString());
-                muziek.LandID = int.Parse(muziekDR["Land_ID"].ToString());
-                muziek.FormaatID = int.Parse(muziekDR["Formaat_ID"].ToString());
-                muziek.GenreID = int.Parse(muziekDR["Genre_ID"].ToString());
-                muziek.AlbumID = int.Parse(muziekDR["Album_ID"].ToString());
+                muziek.Beoordeling = int.Parse(muziekDR["Beoordeling"].ToString());
+                muziek.Taal_ID = int.Parse(muziekDR["Taal_ID"].ToString());
+                muziek.Land_ID = int.Parse(muziekDR["Land_ID"].ToString());
+                muziek.Formaat_ID = int.Parse(muziekDR["Formaat_ID"].ToString());
+                muziek.Genre_ID = int.Parse(muziekDR["Genre_ID"].ToString());
+                muziek.Album_ID = int.Parse(muziekDR["Album_ID"].ToString());
 
                 //hier voegen we de klasse toe aan de lijst van de muziek
                 LijstMetMuziek.Add(muziek);
@@ -171,20 +168,20 @@ namespace DataBaseMuziek
             try
             {
                 //hier geven we de sql string op
-                string sql = "INSERT INTO Muziek (Liedje, Duur, Beoordeling, TaalID, LandID, FormaatID, GenreID, AlbumID) VALUES (@Liedje, @Duur, @Beoordeling, @TaalID, @LandID, @FormaatID, GenreIDn AlbumID)";
+                string sql = "INSERT INTO Muziek (Liedje, Duur, Beoordeling, Taal_ID, Land_ID, Formaat_ID, Genre_ID, Album_ID) VALUES (@Liedje, @Duur, @Beoordeling, @Taal_ID, @Land_ID, @Formaat_ID, @Genre_ID, @Album_ID)";
 
                 //hier maken we de parameters aan om de dingen te kunnen aanvullen.
                 SqlParameter ParLiedje = new SqlParameter("@Liedje", muziek.Liedje);
                 SqlParameter ParDuur = new SqlParameter("@Duur", muziek.Duur);
                 SqlParameter ParBeoordeling = new SqlParameter("@Beoordeling", muziek.Beoordeling);
-                SqlParameter ParTaalID = new SqlParameter("@TaalID", muziek.TaalID);
-                SqlParameter ParLandID = new SqlParameter("@LandID", muziek.LandID);
-                SqlParameter ParFormaatID = new SqlParameter("@FormaatID", muziek.FormaatID);
-                SqlParameter ParGenreID = new SqlParameter("@GenreID", muziek.GenreID);
-                SqlParameter ParAlbumID = new SqlParameter("@AlbumID", muziek.AlbumID);
+                SqlParameter ParTaal_ID = new SqlParameter("@Taal_ID", muziek.Taal_ID);
+                SqlParameter ParLand_ID = new SqlParameter("@Land_ID", muziek.Land_ID);
+                SqlParameter ParFormaat_ID = new SqlParameter("@Formaat_ID", muziek.Formaat_ID);
+                SqlParameter ParGenre_ID = new SqlParameter("@Genre_ID", muziek.Genre_ID);
+                SqlParameter ParAlbum_ID = new SqlParameter("@Album_ID", muziek.Album_ID);
 
                 //hier sturen de opdracht naar de database
-                Database.ExcecuteSQL(sql, ParLiedje, ParDuur, ParBeoordeling, ParTaalID, ParLandID, ParFormaatID, ParGenreID, ParAlbumID);
+                Database.ExcecuteSQL(sql, ParLiedje, ParDuur, ParBeoordeling, ParTaal_ID, ParLand_ID, ParFormaat_ID, ParGenre_ID, ParAlbum_ID);
                 return true;
             }
             catch
@@ -197,20 +194,20 @@ namespace DataBaseMuziek
             try
             {
                 //We maken het statement aan om de muziek up te daten.
-                string sql = "UPDATE Muziek SET Liedje=@Liedje, Duur=@Duur, Beoordeling=@Beoordeling, Taal_ID=@TaalID, Land_ID=@LandID, Formaat_ID=@FormaatID, Genre_ID=@GenreID, Album_ID=@AlbumID  WHERE Muziek_ID=@Muziek_ID";
+                string sql = "UPDATE Muziek SET Liedje=@Liedje, Duur=@Duur, Beoordeling=@Beoordeling, Taal_ID=@Taal_ID, Land_ID=@Land_ID, Formaat_ID=@Formaat_ID, Genre_ID=@Genre_ID, Album_ID=@Album_ID  WHERE Muziek_ID=@Muziek_ID";
                 //hier maken we de parameters aan om de dingen te kunnen aanvullen
-                SqlParameter ParMuziekID = new SqlParameter("@Muziek_ID", muziek.MuziekID);
+                SqlParameter ParMuziek_ID = new SqlParameter("@Muziek_ID", muziek.Muziek_ID);
                 SqlParameter ParLiedje = new SqlParameter("@Liedje", muziek.Liedje);
                 SqlParameter ParDuur = new SqlParameter("@Duur", muziek.Duur);
                 SqlParameter ParBeoordeling = new SqlParameter("@Beoordeling", muziek.Beoordeling);
-                SqlParameter ParTaalID = new SqlParameter("@TaalID", muziek.TaalID);
-                SqlParameter ParLandID = new SqlParameter("@LandID", muziek.LandID);
-                SqlParameter ParFormaatID = new SqlParameter("@FormaatID", muziek.FormaatID);
-                SqlParameter ParGenreID = new SqlParameter("@GenreID", muziek.GenreID);
-                SqlParameter ParAlbumID = new SqlParameter("@AlbumID", muziek.AlbumID);
+                SqlParameter ParTaal_ID = new SqlParameter("@Taal_ID", muziek.Taal_ID);
+                SqlParameter ParLand_ID = new SqlParameter("@Land_ID", muziek.Land_ID);
+                SqlParameter ParFormaat_ID = new SqlParameter("@Formaat_ID", muziek.Formaat_ID);
+                SqlParameter ParGenre_ID = new SqlParameter("@Genre_ID", muziek.Genre_ID);
+                SqlParameter ParAlbum_ID = new SqlParameter("@Album_ID", muziek.Album_ID);
 
                 //hier sturen de opdracht naar de database
-                Database.ExcecuteSQL(sql, ParMuziekID, ParLiedje, ParDuur, ParBeoordeling, ParTaalID, ParLandID, ParFormaatID, ParGenreID, ParAlbumID);
+                Database.ExcecuteSQL(sql, ParMuziek_ID, ParLiedje, ParDuur, ParBeoordeling, ParTaal_ID, ParLand_ID, ParFormaat_ID, ParGenre_ID, ParAlbum_ID);
                 return true;
             }
             catch
@@ -218,14 +215,14 @@ namespace DataBaseMuziek
                 return false;
             }
         }
-        public static bool DeleteMuziek(int MuziekID)
+        public static bool DeleteMuziek(int Muziek_ID)
         {
             try
             {
                 //We maken het statement aan om muziek te verwijderen.
                 string sql = "DELETE FROM Muziek WHERE Muziek_ID=@Muziek_ID";
-                SqlParameter parMuziekID = new SqlParameter("@Muziek_ID", MuziekID);
-                Database.ExcecuteSQL(sql, parMuziekID);
+                SqlParameter parMuziek_ID = new SqlParameter("@Muziek_ID", Muziek_ID);
+                Database.ExcecuteSQL(sql, parMuziek_ID);
                 return true;
             }
             catch
@@ -340,7 +337,7 @@ namespace DataBaseMuziek
                 land land = new land();
 
                 //hier vullen we de gegevens in in de aangemaakte klasse
-                land.LandID = int.Parse(LandDR["Land_ID"].ToString());
+                land.Land_ID = int.Parse(LandDR["Land_ID"].ToString());
                 land.Land = LandDR["Land"].ToString();
                 land.Continent = LandDR["Continent"].ToString();
 
@@ -371,7 +368,7 @@ namespace DataBaseMuziek
                 genre genre = new genre();
 
                 //hier vullen we de gegevens in in de aangemaakte klasse
-                genre.GenreID = int.Parse(genreDR["Genre_ID"].ToString());
+                genre.Genre_ID = int.Parse(genreDR["Genre_ID"].ToString());
                 genre.Genre = genreDR["Genre"].ToString();
 
                 //hier voegen we de klasse toe aan de lijst van de genre
@@ -401,7 +398,7 @@ namespace DataBaseMuziek
                 formaat formaat = new formaat();
 
                 //hier vullen we de gegevens in in de aangemaakte klasse
-                formaat.FormaatID = int.Parse(formaatDR["Formaat_ID"].ToString());
+                formaat.Formaat_ID = int.Parse(formaatDR["Formaat_ID"].ToString());
                 formaat.Formaat = formaatDR["Formaat"].ToString();
 
                 //hier voegen we de klasse toe aan de lijst van formaat
@@ -431,7 +428,7 @@ namespace DataBaseMuziek
                 album album = new album();
 
                 //hier vullen we de gegevens in in de aangemaakte klasse
-                album.albumID = int.Parse(albumDR["Album_ID"].ToString());
+                album.album_ID = int.Parse(albumDR["Album_ID"].ToString());
                 album.Album = albumDR["Album"].ToString();
 
                 //hier voegen we de klasse toe aan de lijst van de album
@@ -465,8 +462,8 @@ namespace DataBaseMuziek
                 //We maken het statement aan om de album up te daten.
                 string sql = "UPDATE Album SET Album=@Album WHERE Album_ID=@Album_ID";
                 SqlParameter ParAlbum = new SqlParameter("@Album", album.Album);
-                SqlParameter ParAlbumID = new SqlParameter("@Album_ID", album.albumID);
-                Database.ExcecuteSQL(sql, ParAlbum, ParAlbumID);
+                SqlParameter ParAlbum_ID = new SqlParameter("@Album_ID", album.album_ID);
+                Database.ExcecuteSQL(sql, ParAlbum, ParAlbum_ID);
                 return true;
             }
             catch
@@ -474,14 +471,14 @@ namespace DataBaseMuziek
                 return false;
             }
         }
-        public static bool DeleteAlbum(int AlbumID)
+        public static bool DeleteAlbum(int Album_ID)
         {
             try
             {
                 //We maken het statement aan om de album te verwijderen.
                 string sql = "DELETE FROM Album WHERE Album_ID=@Album_ID";
-                SqlParameter parAlbumID = new SqlParameter("@Album_ID", AlbumID);
-                Database.ExcecuteSQL(sql, parAlbumID);
+                SqlParameter parAlbum_ID = new SqlParameter("@Album_ID", Album_ID);
+                Database.ExcecuteSQL(sql, parAlbum_ID);
                 return true;
             }
             catch

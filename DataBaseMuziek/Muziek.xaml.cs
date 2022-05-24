@@ -30,7 +30,7 @@ namespace DataBaseMuziek
         List<taal> LijstMetTalen = new List<taal>();
         List<land> LijstMetLanden = new List<land>();
         List<formaat> LijstMetFormaten = new List<formaat>();
-        List<genre> LijstMetGernes = new List<genre>();
+        List<genre> LijstMetGenres = new List<genre>();
         List<album> LijstMetAlbums = new List<album>();
         List<muziek> LijstMetMuziek = new List<muziek>();
 
@@ -38,7 +38,7 @@ namespace DataBaseMuziek
         {
             //Lijsten invullen.
             LijstMetFormaten = FormaatDA.HaalGegevensOp();
-            LijstMetGernes = GenreDA.HaalGegevensOp();
+            LijstMetGenres = GenreDA.HaalGegevensOp();
             LijstMetAlbums = AlbumDA.HaalGegevensOp();
             LijstMetLanden = LandDA.HaalGegevensOp();
             LijstMetTalen = TaalDA.HaalGegevensOp();
@@ -56,7 +56,7 @@ namespace DataBaseMuziek
             {               
                 cmbFormaat.Items.Add(_formaat.Formaat);
             }
-            foreach (genre _genre in LijstMetGernes)
+            foreach (genre _genre in LijstMetGenres)
             {
                 cmbGenre.Items.Add(_genre.Genre);
             }            
@@ -97,18 +97,48 @@ namespace DataBaseMuziek
                     //Controle op selectie.
                     if(cmbAlbum.SelectedIndex != -1 && cmbFormaat.SelectedIndex != -1 && cmbGenre.SelectedIndex != -1 && cmbLand.SelectedIndex != -1 && cmbTaal.SelectedIndex != -1)
                     {
-                        //Klasse aanmaken.
-                        muziek _muziek = new muziek();
-                        _muziek.Liedje = txbLiedje.Text;
-                        _muziek.Duur = txbDuur.Text;
-                        _muziek.Beoordeling = txbBeoordeling.Text;
-                        _muziek.TaalID = LijstMetTalen[cmbTaal.SelectedIndex].TaalID;
-                        _muziek.LandID = LijstMetLanden[cmbLand.SelectedIndex].LandID;
-                        _muziek.FormaatID = LijstMetFormaten[cmbFormaat.SelectedIndex].FormaatID;
-                        _muziek.GenreID = LijstMetGernes[cmbGenre.SelectedIndex].GenreID;
-                        _muziek.AlbumID = LijstMetAlbums[cmbAlbum.SelectedIndex].albumID;
+                        //Controleren of er een cijfer wordt in gegeven.
+                        int nmr;
+                        bool testNr = Int32.TryParse(txbBeoordeling.Text, out nmr);
+                        if (testNr == true)
+                        {
+                            //Controleren of het getal tussen 0 en 10 is.                            
+                            int a = int.Parse(txbBeoordeling.Text);
+                            if (a <= 10 && a >= 0)
+                            {
+                                //Klasse aanmaken.
+                                muziek _muziek = new muziek();
 
-                        WpfUpdaten();
+                                //Klasse variabelen invullen.
+                                _muziek.Liedje = txbLiedje.Text;
+                                _muziek.Duur = txbDuur.Text;
+                                _muziek.Beoordeling = int.Parse(txbBeoordeling.Text);
+                                _muziek.Taal_ID = LijstMetTalen[cmbTaal.SelectedIndex].Taal_ID;
+                                _muziek.Land_ID = LijstMetLanden[cmbLand.SelectedIndex].Land_ID;
+                                _muziek.Formaat_ID = LijstMetFormaten[cmbFormaat.SelectedIndex].Formaat_ID;
+                                _muziek.Genre_ID = LijstMetGenres[cmbGenre.SelectedIndex].Genre_ID;
+                                _muziek.Album_ID = LijstMetAlbums[cmbAlbum.SelectedIndex].album_ID;
+
+                                //Gegevens meegeven met de database.
+                                MuziekDA.voegMuziekToe(_muziek);
+
+                                //Scherm updaten.
+                                WpfUpdaten();
+                            }
+                            else
+                            {
+                                //Melding als het cijfer niet tussen 0 en 10 is.
+                                MessageBox.Show("Het cijfer bij beoordeling moet tussen 0 en 10 zijn, gelieve een correct cijfer in te geven.", "Foutieve invoer", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                                //Textbox terug leegmaken.
+                                txbBeoordeling.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            //Melding als er geen cijfer is ingevuld.
+                            MessageBox.Show("U heeft geen cijfer ingevuld bij beoordeling, gelieve een cijfer in te vullen.", "Foutieve invoer", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
                     }
                     else
                     {
@@ -135,7 +165,27 @@ namespace DataBaseMuziek
             //Foutenopvang.
             try
             {
-                WpfUpdaten();
+                //Controleren of er iets is geselecteerd in de listbox.
+                if (lsbMuziek.SelectedIndex != -1)
+                {
+                    //Vragen of de gebruiker zeker is van zijn keuze.
+                    var check = MessageBox.Show("Bent u zeker dat u deze gegevens wilt verwijderen?", "Bent u zeker?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                    //Controleren of de gebruiker zeker is.
+                    if (check == MessageBoxResult.Yes)
+                    {
+                        //Geselecteerde item verwijderen.
+                        MuziekDA.DeleteMuziek(LijstMetMuziek[lsbMuziek.SelectedIndex].Muziek_ID);
+
+                        //Scherm updaten.
+                        WpfUpdaten();
+                    }
+                }
+                else
+                {
+                    //Melding tonen dat er niet is geselecteerd..
+                    MessageBox.Show("U heeft niet geselecteerd in de lijst, gelieve iets te selecteren.", "Geen selectie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
             //Error tonen wanneer er iets niet klopt.
             catch (Exception error)
@@ -150,7 +200,45 @@ namespace DataBaseMuziek
             //Foutenopvang.
             try
             {
-                WpfUpdaten();
+                //Controleren of het getal tussen 0 en 10 is.
+                int a = int.Parse(txbBeoordeling.Text);
+                if (a <= 10 && a >= 0)
+                {
+                    //Vragen aan de gebruiker of ze zeker zijn van hun keuze.
+                    var check = MessageBox.Show("Bent u zeker dat u deze gegevens wilt wijzigen?", "Bent u zeker?", MessageBoxButton.YesNo);
+
+                    //Controleren of de gebruiker zeker is.
+                    if (check == MessageBoxResult.Yes)
+                    {
+                        //Klasse aanmaken.
+                        muziek _muziek = new muziek();
+
+                        //Klasse variabelen invullen.
+                        _muziek.Muziek_ID = LijstMetMuziek[lsbMuziek.SelectedIndex].Muziek_ID;
+                        _muziek.Liedje = txbLiedje.Text;
+                        _muziek.Duur = txbDuur.Text;
+                        _muziek.Beoordeling = int.Parse(txbBeoordeling.Text);
+                        _muziek.Taal_ID = LijstMetTalen[cmbTaal.SelectedIndex].Taal_ID;
+                        _muziek.Land_ID = LijstMetLanden[cmbLand.SelectedIndex].Land_ID;
+                        _muziek.Formaat_ID = LijstMetFormaten[cmbFormaat.SelectedIndex].Formaat_ID;
+                        _muziek.Genre_ID = LijstMetGenres[cmbGenre.SelectedIndex].Genre_ID;
+                        _muziek.Album_ID = LijstMetAlbums[cmbAlbum.SelectedIndex].album_ID;
+
+                        //Geselecteerde gegevens aanpassen.
+                        MuziekDA.WijzigMuziek(_muziek);
+
+                        //Scherm updaten.
+                        WpfUpdaten();
+                    }
+                }
+                else
+                {
+                    //Melding als het cijfer niet tussen 0 en 10 is.
+                    MessageBox.Show("Het cijfer bij beoordeling moet tussen 0 en 10 zijn, gelieve een correct cijfer in te geven.", "Foutieve invoer", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                    //Textbox terug leegmaken.
+                    txbBeoordeling.Text = "";
+                }
             }
             //Error tonen wanneer er iets niet klopt.
             catch(Exception error)
@@ -159,12 +247,68 @@ namespace DataBaseMuziek
                 MessageBox.Show(error.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        private void lsbMuziek_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //Controleren of er iets is geselecteerd.
+            if (lsbMuziek.SelectedIndex != -1)
+            {
+                //Text-comboboxen invullen.
+                txbLiedje.Text = LijstMetMuziek[lsbMuziek.SelectedIndex].Liedje;
+                txbDuur.Text = LijstMetMuziek[lsbMuziek.SelectedIndex].Duur;
+                txbBeoordeling.Text = $"{LijstMetMuziek[lsbMuziek.SelectedIndex].Beoordeling}";
+                foreach (taal _taal in LijstMetTalen)
+                {
+                    if (_taal.Taal_ID == LijstMetMuziek[lsbMuziek.SelectedIndex].Taal_ID)
+                    {
+                        cmbTaal.Text = _taal.Taal;
+                    }
+                }
+                foreach (land _land in LijstMetLanden)
+                {
+                    if (_land.Land_ID == LijstMetMuziek[lsbMuziek.SelectedIndex].Land_ID)
+                    {
+                        cmbLand.Text = _land.Land;
+                    }
+                }
+                foreach (formaat _formaat in LijstMetFormaten)
+                {
+                    if (_formaat.Formaat_ID == LijstMetMuziek[lsbMuziek.SelectedIndex].Formaat_ID)
+                    {
+                        cmbFormaat.Text = _formaat.Formaat;
+                    }
+                }
+                foreach (genre _genre in LijstMetGenres)
+                {
+                    if (_genre.Genre_ID == LijstMetMuziek[lsbMuziek.SelectedIndex].Genre_ID)
+                    {
+                        cmbGenre.Text = _genre.Genre;
+                    }
+                }
+                foreach (album _album in LijstMetAlbums)
+                {
+                    if (_album.album_ID == LijstMetMuziek[lsbMuziek.SelectedIndex].Album_ID)
+                    {
+                        cmbAlbum.Text = _album.Album;
+                    }
+                }
+            }
+        }
 
         private void btnAlbum_Click(object sender, RoutedEventArgs e)
         {
             //Scherm aanmaken en tonen.
             Album album = new Album();
             album.Show();
+
+            //Huidig scherm sluiten.
+            this.Close();
+        }
+
+        private void btnTerug_Click(object sender, RoutedEventArgs e)
+        {
+            //Scherm aanmaken en tonen.
+            Overzicht overzicht = new Overzicht();
+            overzicht.Show();
 
             //Huidig scherm sluiten.
             this.Close();

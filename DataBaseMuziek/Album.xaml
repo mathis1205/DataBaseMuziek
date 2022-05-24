@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DataBaseMuziek"
         mc:Ignorable="d"
-        Title="Album" Height="450" Width="800">
+        Title="Album" Height="330" Width="398">
     <Grid>
-        
+        <Grid.Background>
+            <ImageBrush/>
+        </Grid.Background>
+        <Label x:Name="lblAlbum" Content="Album :" HorizontalAlignment="Left" Margin="191,28,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txbAlbum" HorizontalAlignment="Left" Margin="247,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ListBox x:Name="lsbAlbums" Height="281" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="176" SelectionChanged="lsbAlbums_SelectionChanged"/>
+        <Button x:Name="btnToevoegen" Content="Toevoegen" Margin="247,55,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Click="btnToevoegen_Click"/>
+        <Button x:Name="btnWijzigen" Content="Wijzigen" Margin="247,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Click="btnWijzigen_Click"/>
+        <Button x:Name="btnVerwijderen" Content="Verwijderen" Margin="247,105,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Click="btnVerwijderen_Click"/>
+        <Button x:Name="btnTerug" Content="Terug" Margin="247,130,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" Click="btnTerug_Click"/>
+
     </Grid>
 </Window>
