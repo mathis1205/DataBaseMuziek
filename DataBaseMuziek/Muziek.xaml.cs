@@ -33,6 +33,7 @@ namespace DataBaseMuziek
         List<genre> LijstMetGenres = new List<genre>();
         List<album> LijstMetAlbums = new List<album>();
         List<muziek> LijstMetMuziek = new List<muziek>();
+        List<zanger> LijstMetZangers = new List<zanger>();
 
         private void ComboboxenEnListenInvullen()
         {
@@ -42,6 +43,7 @@ namespace DataBaseMuziek
             LijstMetAlbums = AlbumDA.HaalGegevensOp();
             LijstMetLanden = LandDA.HaalGegevensOp();
             LijstMetTalen = TaalDA.HaalGegevensOp();
+            LijstMetZangers = ZangerDA.HaalGegevensOp();
 
             //Comboboxen invullen.
             foreach(taal _taal in LijstMetTalen)
@@ -64,6 +66,10 @@ namespace DataBaseMuziek
             {
                 cmbAlbum.Items.Add(_album.Album);
             }
+            foreach (zanger _zanger in LijstMetZangers)
+            {
+                cmbZanger.Items.Add(_zanger.Voornaam);
+            }
         }
 
         private void ListboxInvullen()
@@ -83,7 +89,7 @@ namespace DataBaseMuziek
         {
             //WPF updaten.
             ListboxInvullen();
-            txbBeoordeling.Text = txbDuur.Text = txbLiedje.Text = cmbAlbum.Text = cmbFormaat.Text = cmbGenre.Text = cmbLand.Text = cmbTaal.Text = "";
+            cmbZanger.Text = txbBeoordeling.Text = txbDuur.Text = txbLiedje.Text = cmbAlbum.Text = cmbFormaat.Text = cmbGenre.Text = cmbLand.Text = cmbTaal.Text = "";
         }
 
         private void btnToevoegen_Click(object sender, RoutedEventArgs e)
@@ -309,6 +315,16 @@ namespace DataBaseMuziek
             //Scherm aanmaken en tonen.
             Overzicht overzicht = new Overzicht();
             overzicht.Show();
+
+            //Huidig scherm sluiten.
+            this.Close();
+        }
+
+        private void btnZanger_Click(object sender, RoutedEventArgs e)
+        {
+            //Scherm aanmaken en tonen.
+            Zanger zanger = new Zanger();
+            zanger.Show();
 
             //Huidig scherm sluiten.
             this.Close();

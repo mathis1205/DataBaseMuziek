@@ -5,8 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DataBaseMuziek"
         mc:Ignorable="d"
-        Title="Zanger" Height="450" Width="800">
+        Title="Zanger" Height="245" Width="516">
     <Grid>
-        
+        <Label x:Name="lblNaam" Content="Naam :" HorizontalAlignment="Left" Margin="10,6,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblVoornaam" Content="Voornaam :" HorizontalAlignment="Left" Margin="10,29,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblArtiestennaam" Content="Artiestennaam :" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txbArtiestennaam" HorizontalAlignment="Left" Margin="108,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txbNaam" HorizontalAlignment="Left" Margin="108,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txbVoornaam" HorizontalAlignment="Left" Margin="108,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnToevoegen" Content="Toevoegen" HorizontalAlignment="Left" Margin="108,106,0,0" VerticalAlignment="Top" Width="120" Click="btnToevoegen_Click"/>
+        <Button x:Name="btnWijzigen" Content="Wijzigen" HorizontalAlignment="Left" Margin="108,131,0,0" VerticalAlignment="Top" Width="120" Click="btnWijzigen_Click"/>
+        <Button x:Name="btnVerwijderen" Content="Verwijderen" HorizontalAlignment="Left" Margin="108,156,0,0" VerticalAlignment="Top" Width="120" Click="btnVerwijderen_Click"/>
+        <Button x:Name="btnTerug" Content="Terug" HorizontalAlignment="Left" Margin="108,181,0,0" VerticalAlignment="Top" Width="120" Click="btnTerug_Click"/>
+        <ListBox x:Name="lsbZangers" Width="250" Margin="240,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="191" SelectionChanged="ListBox_SelectionChanged"/>
+        <ComboBox x:Name="cmbLand" HorizontalAlignment="Left" Margin="108,79,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="lblLand" Content="Land :" HorizontalAlignment="Left" Margin="10,77,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>
