@@ -69,7 +69,7 @@ namespace DataBaseMuziek
             foreach (zanger _zanger in LijstMetZangers)
             {
                 cmbZanger.Items.Add(_zanger.Voornaam);
-            }
+            }            
         }
 
         private void ListboxInvullen()
@@ -112,8 +112,9 @@ namespace DataBaseMuziek
                             int a = int.Parse(txbBeoordeling.Text);
                             if (a <= 10 && a >= 0)
                             {
-                                //Klasse aanmaken.
+                                //Klasses aanmaken.
                                 muziek _muziek = new muziek();
+                                Muziek_Zanger muziek_Zanger = new Muziek_Zanger();
 
                                 //Klasse variabelen invullen.
                                 _muziek.Liedje = txbLiedje.Text;
@@ -122,11 +123,16 @@ namespace DataBaseMuziek
                                 _muziek.Taal_ID = LijstMetTalen[cmbTaal.SelectedIndex].Taal_ID;
                                 _muziek.Land_ID = LijstMetLanden[cmbLand.SelectedIndex].Land_ID;
                                 _muziek.Formaat_ID = LijstMetFormaten[cmbFormaat.SelectedIndex].Formaat_ID;
-                                _muziek.Genre_ID = LijstMetGenres[cmbGenre.SelectedIndex].Genre_ID;
+                                muziek_Zanger.Genre_ID = _muziek.Genre_ID = LijstMetGenres[cmbGenre.SelectedIndex].Genre_ID;
                                 _muziek.Album_ID = LijstMetAlbums[cmbAlbum.SelectedIndex].album_ID;
+                                muziek_Zanger.Zanger_ID = LijstMetZangers[cmbZanger.SelectedIndex].Zanger_ID;
 
+                                //Zoeken naar laatste ID voor het juiste ID mee te geven.
+                                muziek_Zanger.Muziek_ID = LijstMetMuziek[LijstMetMuziek.Count -1].Muziek_ID +1;
+                                
                                 //Gegevens meegeven met de database.
                                 MuziekDA.voegMuziekToe(_muziek);
+                                Muziek_ZangerDA.voegMuziek_ZangerToe(muziek_Zanger);
 
                                 //Scherm updaten.
                                 WpfUpdaten();
@@ -182,6 +188,7 @@ namespace DataBaseMuziek
                     {
                         //Geselecteerde item verwijderen.
                         MuziekDA.DeleteMuziek(LijstMetMuziek[lsbMuziek.SelectedIndex].Muziek_ID);
+                        Muziek_ZangerDA.DeleteMuziek_Zanger(LijstMetMuziek[lsbMuziek.SelectedIndex].Muziek_ID, LijstMetMuziek[lsbMuziek.SelectedIndex].Genre_ID);
 
                         //Scherm updaten.
                         WpfUpdaten();
@@ -216,8 +223,9 @@ namespace DataBaseMuziek
                     //Controleren of de gebruiker zeker is.
                     if (check == MessageBoxResult.Yes)
                     {
-                        //Klasse aanmaken.
+                        //Klasses aanmaken.
                         muziek _muziek = new muziek();
+                        Muziek_Zanger muziek_Zanger = new Muziek_Zanger();
 
                         //Klasse variabelen invullen.
                         _muziek.Muziek_ID = LijstMetMuziek[lsbMuziek.SelectedIndex].Muziek_ID;
@@ -227,11 +235,13 @@ namespace DataBaseMuziek
                         _muziek.Taal_ID = LijstMetTalen[cmbTaal.SelectedIndex].Taal_ID;
                         _muziek.Land_ID = LijstMetLanden[cmbLand.SelectedIndex].Land_ID;
                         _muziek.Formaat_ID = LijstMetFormaten[cmbFormaat.SelectedIndex].Formaat_ID;
-                        _muziek.Genre_ID = LijstMetGenres[cmbGenre.SelectedIndex].Genre_ID;
+                        muziek_Zanger.Genre_ID = _muziek.Genre_ID = LijstMetGenres[cmbGenre.SelectedIndex].Genre_ID;
                         _muziek.Album_ID = LijstMetAlbums[cmbAlbum.SelectedIndex].album_ID;
+                        muziek_Zanger.Zanger_ID = LijstMetZangers[cmbZanger.SelectedIndex].Zanger_ID;
 
                         //Geselecteerde gegevens aanpassen.
                         MuziekDA.WijzigMuziek(_muziek);
+                        Muziek_ZangerDA.WijzigMuziek_Zanger(muziek_Zanger);
 
                         //Scherm updaten.
                         WpfUpdaten();
@@ -295,6 +305,13 @@ namespace DataBaseMuziek
                     if (_album.album_ID == LijstMetMuziek[lsbMuziek.SelectedIndex].Album_ID)
                     {
                         cmbAlbum.Text = _album.Album;
+                    }
+                }
+                foreach (zanger _zanger in LijstMetZangers)
+                {
+                    if (_zanger.Zanger_ID == LijstMetZangers[lsbMuziek.SelectedIndex].Zanger_ID)
+                    {
+                        cmbZanger.Text = _zanger.Voornaam;
                     }
                 }
             }

@@ -299,16 +299,15 @@ namespace DataBaseMuziek
                 return false;
             }
         }
-        public static bool DeleteMuziek_Zanger(int Genre_ID, int Muziek_ID, int Zanger_ID)
+        public static bool DeleteMuziek_Zanger(int Genre_ID, int Muziek_ID)
         {
             try
             {
                 //We maken het statement aan om de album te verwijderen.
-                string sql = "DELETE FROM Muziek_Zanger WHERE Genre_ID=@Genre_ID OR Muziek_ID=@Muziek_ID OR Zanger_ID=@Zanger_ID";
+                string sql = "DELETE FROM Muziek_Zanger WHERE Genre_ID=@Genre_ID AND Muziek_ID=@Muziek_ID";
                 SqlParameter ParGenre_ID = new SqlParameter("@Genre_ID", Genre_ID);
                 SqlParameter ParMuziek_ID = new SqlParameter("@Muziek_ID", Muziek_ID);
-                SqlParameter ParZanger_ID = new SqlParameter("@Zanger_ID", Zanger_ID);
-                Database.ExcecuteSQL(sql, ParGenre_ID, ParMuziek_ID, ParZanger_ID);
+                Database.ExcecuteSQL(sql, ParGenre_ID, ParMuziek_ID);
                 return true;
             }
             catch
