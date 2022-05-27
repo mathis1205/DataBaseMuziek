@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace DataBaseMuziek
 {
-    public class Klassen
-    {
-    }
     public class genre
     {
         public int Genre_ID { get; set; }
