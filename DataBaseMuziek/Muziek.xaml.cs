@@ -339,5 +339,27 @@ namespace DataBaseMuziek
             //Huidig scherm sluiten.
             this.Close();
         }
+
+        private void btnUitloggen_Click(object sender, RoutedEventArgs e)
+        {
+            //Vragen of ze zeker zijn dat ze willen uitloggen.
+            var mess = MessageBox.Show("U bent zeker dat u wilt uitloggen?", "Uitloggen", MessageBoxButton.YesNo);
+            //Wanneer er op JA wordt geklikt wordt de gebruiker uitgelogd.
+            if(mess == MessageBoxResult.Yes)
+            {
+                //Terug naar login scherm.
+                Login login = new Login();
+                login.Show();
+                this.Close();
+            }
+        }
+
+        private void btnAccount_Click(object sender, RoutedEventArgs e)
+        {
+            //Accountscherm tonen.
+            Account account = new Account();
+            account.Show();
+            this.Close();
+        }
     }
 }

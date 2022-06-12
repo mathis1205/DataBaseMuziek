@@ -40,23 +40,34 @@ namespace DataBaseMuziek
                 {
                     foreach(accounts accounts in LijstMetAccounts)
                     {
-                        //Controleren of 
+                        //Controleren of het gebruiksnaam bestaat en zorgen dat het niet hoofdlettergevoelig is.
                         if(accounts.Naam.Equals(txbNaam.Text, StringComparison.CurrentCultureIgnoreCase))
                         {
+                            //Controleren of het wachtwoord correct is.
                             if(accounts.Wachtwoord == pwbWachtwoord.Password)
                             {
-                                Muziek muziek = new Muziek();
-                                muziek.Show();
-                                this.Close();
+                                //Tonen dat je succesvol bent ingelogd.
+                                var mess = MessageBox.Show("U bent succesvol ingelogd.", "Succesvol ingelogd", MessageBoxButton.OK);
+
+                                //Muziek scherm tonen wanneer er op OK wordt geklikt.
+                                if(mess == MessageBoxResult.OK)
+                                {
+                                    //Muziek scherm tonen.
+                                    Muziek muziek = new Muziek();
+                                    muziek.Show();
+                                    this.Close();
+                                }                                
                             }
                             else
                             {
+                                //Tonen dat het wachtwoord niet juist is en de passwoordbox leegmaken.
                                 MessageBox.Show("Het wachtwoord is niet juist, probeer opnieuw.", "Foutief wachtwoord", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 pwbWachtwoord.Password = "";
                             }
                         }
                         else
                         {
+                            //Tonen dat het gebruiksnaam niet gevonden is en de textbox leegmaken.
                             MessageBox.Show("Gebruikersnaam niet gevonden, probeer opnieuw.", "Gebruikers naam niet gevonden", MessageBoxButton.OK, MessageBoxImage.Warning);
                             txbNaam.Text = "";
                         }
@@ -64,6 +75,7 @@ namespace DataBaseMuziek
                 }
                 else
                 {
+                    //Tonen dat niet alles is ingevuld.
                     MessageBox.Show("U heeft niet alles ingevuld, gelieve alles in te vullen.", "Geen invoer", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }

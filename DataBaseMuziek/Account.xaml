@@ -1,0 +1,20 @@
+﻿<Window x:Class="DataBaseMuziek.Account"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataBaseMuziek"
+        mc:Ignorable="d"
+        Title="Account" Height="197" Width="466">
+    <Grid>
+        <Label x:Name="lblNaam" Content="Gebruiksnaam :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblWachtwoord" Content="Wachtwoord :" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txbNaam" HorizontalAlignment="Left" Margin="107,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="pwbWachtwoord" HorizontalAlignment="Left" Margin="107,45,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnAanmaken" Content="Account aanmaken" HorizontalAlignment="Left" Margin="107,68,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="btnAanmaken_Click"/>
+        <Button x:Name="btnVerwijderen" Content="Account verwijderen" HorizontalAlignment="Left" Margin="107,98,0,0" VerticalAlignment="Top" Width="120" Height="25" Click="btnVerwijderen_Click"/>
+        <ListBox x:Name="lsbAccounts" Width="200" Margin="243,14,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="139"/>
+        <Button x:Name="btnTerug" Content="Terug" HorizontalAlignment="Left" Margin="107,128,0,0" VerticalAlignment="Top" Height="25" Width="120" Click="btnTerug_Click"/>
+
+    </Grid>
+</Window>

@@ -515,5 +515,40 @@ namespace DataBaseMuziek
             }
             return LijstMetAccounts;
         }
+        public static bool voegAccountToe(accounts account)
+        {
+            try
+            {
+                //hier geven we de sql string op
+                string sql = "INSERT INTO Accounts (Naam, Wachtwoord) VALUES (@Naam, @Wachtwoord)";
+
+                //hier maken we de parameters aan om de gegevens te kunnen invullen.
+                SqlParameter ParNaam = new SqlParameter("@Naam", account.Naam);
+                SqlParameter ParWachtwoord = new SqlParameter("@Wachtwoord", account.Wachtwoord);
+
+                //hier sturen de opdracht naar de database
+                Database.ExcecuteSQL(sql, ParNaam, ParWachtwoord);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool DeleteAccount(int Account_ID)
+        {
+            try
+            {
+                //We maken het statement aan om het account te verwijderen.
+                string sql = "DELETE FROM Accounts WHERE Account_ID=@Account_ID";
+                SqlParameter parAccount_ID = new SqlParameter("@Account_ID", Account_ID);
+                Database.ExcecuteSQL(sql, parAccount_ID);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
