@@ -58,4 +58,10 @@ namespace DataBaseMuziek
         public int Taal_ID { get; set; }
         public string Taal { get; set; }
     }
+    public class accounts
+    {
+        public int Account_ID { get; set; } 
+        public string Naam { get; set; }
+        public string Wachtwoord { get; set; }
+    }
 }

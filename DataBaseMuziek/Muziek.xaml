@@ -29,7 +29,6 @@
         <Button x:Name="btnVerwijderen" Content="Verwijderen" HorizontalAlignment="Left" Margin="221,62,0,0" VerticalAlignment="Top" Width="120" Height="43" Click="btnVerwijderen_Click"/>
         <Button x:Name="btnWijzigen" Content="Wijzigen" HorizontalAlignment="Left" Margin="220,110,0,0" VerticalAlignment="Top" Width="120" Height="43" Click="btnWijzigen_Click"/>
         <Button x:Name="btnAlbum" Content="..." HorizontalAlignment="Left" Margin="221,204,0,0" VerticalAlignment="Top" Width="20" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="btnAlbum_Click"/>
-        <Button x:Name="btnTerug" Content="Terug naar overzicht" HorizontalAlignment="Left" Margin="221,156,0,0" VerticalAlignment="Top" Width="120" Click="btnTerug_Click"/>
         <Label x:Name="lblZanger" Content="Zanger :" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top"/>
         <ComboBox x:Name="cmbZanger" HorizontalAlignment="Left" Margin="96,231,0,0" VerticalAlignment="Top" Width="120" Height="24"/>
         <Button x:Name="btnZanger" Content="..." HorizontalAlignment="Left" Margin="221,233,0,0" VerticalAlignment="Top" Width="20" Click="btnZanger_Click"/>

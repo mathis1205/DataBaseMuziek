@@ -68,8 +68,8 @@ namespace DataBaseMuziek
             if (i >= 3)
             {
                 //Nieuw scherm aanmaken en tonen.
-                Overzicht overzicht = new Overzicht();
-                overzicht.Show();
+                Login login = new Login();
+                login.Show();
 
                 //Huidig scherm sluiten.
                 this.Close();

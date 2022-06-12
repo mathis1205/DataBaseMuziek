@@ -40,10 +40,7 @@ namespace DataBaseMuziek
         {
             //Listbox leegmaken.
             lsbZangers.Items.Clear();
-
-            //List invullen.
-            LijstMetLanden = LandDA.HaalGegevensOp();
-            
+                        
             foreach (var item in ZangerDA.HaalGegevensOp())
             {
                 //List invullen.
@@ -52,13 +49,16 @@ namespace DataBaseMuziek
                 //Listbox invullen.
                 lsbZangers.Items.Add($"{item.Voornaam}  {item.Naam}  {item.ArtiestenNaam}");
             }
+
+            //List invullen.
+            LijstMetLanden = LandDA.HaalGegevensOp();
         }
 
         private void WpfUpdaten()
         {
             //WPF updaten.
             ListboxInvullen();
-            txbArtiestennaam.Text = txbNaam.Text = txbVoornaam.Text = "";
+            txbArtiestennaam.Text = txbNaam.Text = txbVoornaam.Text = cmbLand.Text = "";
         }
 
         private void btnToevoegen_Click(object sender, RoutedEventArgs e)
@@ -116,12 +116,14 @@ namespace DataBaseMuziek
                     _zanger.Voornaam = txbVoornaam.Text;
                     _zanger.ArtiestenNaam = txbArtiestennaam.Text;
                     _zanger.Land_ID = LijstMetLanden[cmbLand.SelectedIndex].Land_ID;
+                    _zanger.Zanger_ID = LijstMetZangers[lsbZangers.SelectedIndex].Zanger_ID;
 
                     //Geselecteerde gegevens aanpassen.
                     ZangerDA.Wijzigzanger(_zanger);
 
                     //Scherm updaten.
-                    WpfUpdaten();
+                    LijstMetZangers.Clear();
+                    WpfUpdaten();                    
                 }
 
             }
@@ -171,8 +173,8 @@ namespace DataBaseMuziek
         private void btnTerug_Click(object sender, RoutedEventArgs e)
         {
             //Scherm aanmaken en tonen.
-            Overzicht overzicht = new Overzicht();
-            overzicht.Show();
+            Muziek muziek = new Muziek();
+            muziek.Show();
 
             //Huidig scherm sluiten.
             this.Close();

@@ -128,13 +128,14 @@ namespace DataBaseMuziek
                                 muziek_Zanger.Zanger_ID = LijstMetZangers[cmbZanger.SelectedIndex].Zanger_ID;
 
                                 //Zoeken naar laatste ID voor het juiste ID mee te geven.
-                                muziek_Zanger.Muziek_ID = LijstMetMuziek[LijstMetMuziek.Count -1].Muziek_ID +1;
+                                muziek_Zanger.Muziek_ID = LijstMetMuziek[LijstMetMuziek.Count -1].Muziek_ID + 1; 
                                 
                                 //Gegevens meegeven met de database.
                                 MuziekDA.voegMuziekToe(_muziek);
                                 Muziek_ZangerDA.voegMuziek_ZangerToe(muziek_Zanger);
 
                                 //Scherm updaten.
+                                LijstMetMuziek.Clear();
                                 WpfUpdaten();
                             }
                             else
@@ -191,6 +192,7 @@ namespace DataBaseMuziek
                         Muziek_ZangerDA.DeleteMuziek_Zanger(LijstMetMuziek[lsbMuziek.SelectedIndex].Muziek_ID, LijstMetMuziek[lsbMuziek.SelectedIndex].Genre_ID);
 
                         //Scherm updaten.
+                        LijstMetMuziek.Clear();
                         WpfUpdaten();
                     }
                 }
@@ -244,6 +246,7 @@ namespace DataBaseMuziek
                         Muziek_ZangerDA.WijzigMuziek_Zanger(muziek_Zanger);
 
                         //Scherm updaten.
+                        LijstMetMuziek.Clear();
                         WpfUpdaten();
                     }
                 }
@@ -322,16 +325,6 @@ namespace DataBaseMuziek
             //Scherm aanmaken en tonen.
             Album album = new Album();
             album.Show();
-
-            //Huidig scherm sluiten.
-            this.Close();
-        }
-
-        private void btnTerug_Click(object sender, RoutedEventArgs e)
-        {
-            //Scherm aanmaken en tonen.
-            Overzicht overzicht = new Overzicht();
-            overzicht.Show();
 
             //Huidig scherm sluiten.
             this.Close();

@@ -33,6 +33,9 @@ namespace DataBaseMuziek
             //Listbox leegmaken.
             lsbAlbums.Items.Clear();
 
+            //List leegmaken.
+            LijstMetAlbums.Clear();
+
             //Listbox invullen.
             foreach (var item in AlbumDA.HaalGegevensOp())
             {
@@ -100,6 +103,7 @@ namespace DataBaseMuziek
 
                     //Klasse variabelen invullen.
                     _album.Album = txbAlbum.Text;
+                    _album.album_ID = LijstMetAlbums[lsbAlbums.SelectedIndex].album_ID;
 
                     //Gegevens meegeven met de database.
                     AlbumDA.WijzigAlbum(_album);

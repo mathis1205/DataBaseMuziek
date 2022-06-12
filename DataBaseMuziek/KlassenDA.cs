@@ -33,7 +33,7 @@ namespace DataBaseMuziek
                 zanger.Naam = zangerDR["Naam"].ToString();
                 zanger.Voornaam = zangerDR["Voornaam"].ToString();
                 zanger.ArtiestenNaam = zangerDR["ArtiestenNaam"].ToString();
-                zanger.Zanger_ID = int.Parse(zangerDR["Land_ID"].ToString());
+                zanger.Land_ID = int.Parse(zangerDR["Land_ID"].ToString());
 
                 //hier voegen we de klasse toe aan de lijst van de zanger
                 LijstMetZanger.Add(zanger);
@@ -484,6 +484,36 @@ namespace DataBaseMuziek
             {
                 return false;
             }
+        }
+    }
+    public class AccountsDA
+    {
+        public static List<accounts> HaalGegevensOp()
+        {
+            //het uitlezen van de database
+            //we maken een lijst aan voor de accounts in te plaatsen
+            List<accounts> LijstMetAccounts = new List<accounts>();
+
+            //We maken het statement aan om de landen uit te lezen
+            string sSql = "Select Account_ID, Naam, Wachtwoord FROM dbo.Accounts";
+
+            //hier gaan we de verschillende dingen ophalen uit de database
+            //we plaatsen dit in een datatabel
+            DataTable AccountDT = Database.GetDT(sSql);
+            //Hier lezen we de datatabel uit met een foreacht
+            foreach (DataRow AccountDR in AccountDT.Rows)
+            {
+                accounts account = new accounts();
+
+                //hier vullen we de gegevens in in de aangemaakte klasse
+                account.Account_ID = int.Parse(AccountDR["Account_ID"].ToString());
+                account.Naam = AccountDR["Naam"].ToString();
+                account.Wachtwoord = AccountDR["Wachtwoord"].ToString();
+
+                //hier voegen we de klasse toe aan de lijst van de accounts
+                LijstMetAccounts.Add(account);
+            }
+            return LijstMetAccounts;
         }
     }
 }
