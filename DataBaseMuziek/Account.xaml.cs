@@ -1,32 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DataBaseMuziek
 {
     /// <summary>
-    /// Interaction logic for Account.xaml
+    ///     Interaction logic for Account.xaml
     /// </summary>
     public partial class Account : Window
     {
+        //Listen aanmaken.
+        private List<accounts> LijstMetAccounts = new List<accounts>();
+
         public Account()
         {
             InitializeComponent();
             ListboxInvullen();
         }
-
-        //Listen aanmaken.
-        List<accounts> LijstMetAccounts = new List<accounts>();
 
         private void ListboxInvullen()
         {
@@ -62,7 +52,7 @@ namespace DataBaseMuziek
                 if (txbNaam.Text != "" && pwbWachtwoord.Password != "")
                 {
                     //Klasse aanmaken.
-                    accounts account = new accounts();
+                    var account = new accounts();
 
                     //Klasse variabelen invullen.
                     account.Naam = txbNaam.Text;
@@ -77,11 +67,12 @@ namespace DataBaseMuziek
                 else
                 {
                     //Melding tonen wanneer niet alles is ingevuld.
-                    MessageBox.Show("U heeft niet alles ingevuld, gelieve alles in te vullen.", "Geen invoer", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("U heeft niet alles ingevuld, gelieve alles in te vullen.", "Geen invoer",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             //Error tonen wanneer er iets niet klopt.
-            catch(Exception error)
+            catch (Exception error)
             {
                 //Error tonen.
                 MessageBox.Show(error.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -97,7 +88,8 @@ namespace DataBaseMuziek
                 if (lsbAccounts.SelectedIndex != -1)
                 {
                     //Vragen of de gebruiker zeker is van zijn keuze.
-                    var check = MessageBox.Show("Bent u zeker dat u deze gegevens wilt verwijderen?", "Bent u zeker?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    var check = MessageBox.Show("Bent u zeker dat u deze gegevens wilt verwijderen?", "Bent u zeker?",
+                        MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                     //Controleren of de gebruiker zeker is.
                     if (check == MessageBoxResult.Yes)
@@ -112,7 +104,8 @@ namespace DataBaseMuziek
                 else
                 {
                     //Melding tonen dat er niet is geselecteerd..
-                    MessageBox.Show("U heeft niet geselecteerd in de lijst, gelieve iets te selecteren.", "Geen selectie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("U heeft niet geselecteerd in de lijst, gelieve iets te selecteren.",
+                        "Geen selectie", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             //Error tonen wanneer er iets niet klopt.
@@ -126,9 +119,9 @@ namespace DataBaseMuziek
         private void btnTerug_Click(object sender, RoutedEventArgs e)
         {
             //Muziekscherm tonen.
-            Muziek muziek = new Muziek();
+            var muziek = new Muziek();
             muziek.Show();
-            this.Close();
+            Close();
         }
     }
 }

@@ -1,46 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DataBaseMuziek
 {
     /// <summary>
-    /// Interaction logic for Zanger.xaml
+    ///     Interaction logic for Zanger.xaml
     /// </summary>
     public partial class Zanger : Window
     {
+        private List<land> LijstMetLanden = new List<land>();
+
+        //Listen aanmaken.
+        private readonly List<zanger> LijstMetZangers = new List<zanger>();
+
         public Zanger()
         {
             InitializeComponent();
             ListboxInvullen();
 
             //Combobox invullen
-            foreach (var item in LandDA.HaalGegevensOp())
-            {
-                cmbLand.Items.Add(item.Land);
-            }
+            foreach (var item in LandDA.HaalGegevensOp()) cmbLand.Items.Add(item.Land);
         }
-
-        //Listen aanmaken.
-        List<zanger> LijstMetZangers = new List<zanger>();
-        List<land> LijstMetLanden = new List<land>();
 
         //Listbox invullen.
         private void ListboxInvullen()
         {
             //Listbox leegmaken.
             lsbZangers.Items.Clear();
-                        
+
             foreach (var item in ZangerDA.HaalGegevensOp())
             {
                 //List invullen.
@@ -70,7 +59,7 @@ namespace DataBaseMuziek
                 if (txbVoornaam.Text != "" && txbNaam.Text != "" && txbArtiestennaam.Text != "")
                 {
                     //Klasse aanmaken.
-                    zanger _zanger = new zanger();
+                    var _zanger = new zanger();
 
                     //Klasse variabelen invullen.
                     _zanger.Naam = txbNaam.Text;
@@ -87,7 +76,8 @@ namespace DataBaseMuziek
                 else
                 {
                     //Melding tonen wanneer niet alles is ingevuld.
-                    MessageBox.Show("U heeft niet alles ingevuld, gelieve alles in te vullen.", "Geen invoer", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("U heeft niet alles ingevuld, gelieve alles in te vullen.", "Geen invoer",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             //Error tonen wanneer er iets niet klopt.
@@ -97,19 +87,21 @@ namespace DataBaseMuziek
                 MessageBox.Show(error.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
         private void btnWijzigen_Click(object sender, RoutedEventArgs e)
         {
             //Foutenopvang.
             try
             {
                 //Vragen aan de gebruiker of ze zeker zijn van hun keuze.
-                var check = MessageBox.Show("Bent u zeker dat u deze gegevens wilt wijzigen?", "Bent u zeker?", MessageBoxButton.YesNo);
+                var check = MessageBox.Show("Bent u zeker dat u deze gegevens wilt wijzigen?", "Bent u zeker?",
+                    MessageBoxButton.YesNo);
 
                 //Controleren of de gebruiker zeker is.
                 if (check == MessageBoxResult.Yes)
                 {
                     //Klasse aanmaken.
-                    zanger _zanger = new zanger();
+                    var _zanger = new zanger();
 
                     //Klasse variabelen invullen.
                     _zanger.Naam = txbNaam.Text;
@@ -123,9 +115,8 @@ namespace DataBaseMuziek
 
                     //Scherm updaten.
                     LijstMetZangers.Clear();
-                    WpfUpdaten();                    
+                    WpfUpdaten();
                 }
-
             }
             //Error tonen wanneer er iets niet klopt.
             catch (Exception error)
@@ -144,7 +135,8 @@ namespace DataBaseMuziek
                 if (lsbZangers.SelectedIndex != -1)
                 {
                     //Vragen of de gebruiker zeker is van zijn keuze.
-                    var check = MessageBox.Show("Bent u zeker dat u deze gegevens wilt verwijderen?", "Bent u zeker?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    var check = MessageBox.Show("Bent u zeker dat u deze gegevens wilt verwijderen?", "Bent u zeker?",
+                        MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                     //Controleren of de gebruiker zeker is.
                     if (check == MessageBoxResult.Yes)
@@ -159,7 +151,8 @@ namespace DataBaseMuziek
                 else
                 {
                     //Melding tonen dat er niet is geselecteerd..
-                    MessageBox.Show("U heeft niet geselecteerd in de lijst, gelieve iets te selecteren.", "Geen selectie", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("U heeft niet geselecteerd in de lijst, gelieve iets te selecteren.",
+                        "Geen selectie", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             //Error tonen wanneer er iets niet klopt.
@@ -173,11 +166,11 @@ namespace DataBaseMuziek
         private void btnTerug_Click(object sender, RoutedEventArgs e)
         {
             //Scherm aanmaken en tonen.
-            Muziek muziek = new Muziek();
+            var muziek = new Muziek();
             muziek.Show();
 
             //Huidig scherm sluiten.
-            this.Close();
+            Close();
         }
 
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -189,13 +182,9 @@ namespace DataBaseMuziek
                 txbNaam.Text = LijstMetZangers[lsbZangers.SelectedIndex].Naam;
                 txbVoornaam.Text = LijstMetZangers[lsbZangers.SelectedIndex].Voornaam;
                 txbArtiestennaam.Text = LijstMetZangers[lsbZangers.SelectedIndex].ArtiestenNaam;
-                foreach (land _land in LijstMetLanden)
-                {
+                foreach (var _land in LijstMetLanden)
                     if (_land.Land_ID == LijstMetZangers[lsbZangers.SelectedIndex].Land_ID)
-                    {
                         cmbLand.Text = _land.Land;
-                    }
-                }
             }
         }
     }

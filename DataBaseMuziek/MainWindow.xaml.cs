@@ -1,27 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace DataBaseMuziek
 {
     /// <summary>
-    /// Interaction logic for StartScherm.xaml
+    ///     Interaction logic for StartScherm.xaml
     /// </summary>
     public partial class StartScherm : Window
     {
+        //Variabele aanmaken.
+        private int i;
+
         //Timer aanmaken.
-        DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Normal);
+        private readonly DispatcherTimer timer = new DispatcherTimer(DispatcherPriority.Normal);
+
         public StartScherm()
         {
             InitializeComponent();
@@ -33,9 +27,6 @@ namespace DataBaseMuziek
             timer.Tick += timer_Tick;
             timer.Start();
         }
-
-        //Variabele aanmaken.
-        int i = 0;
 
         public void timer_Tick(object sender, EventArgs e)
         {
@@ -49,16 +40,12 @@ namespace DataBaseMuziek
                 lblKlik.Visibility = Visibility.Visible;
 
                 //Controleren of i even/oneven is.
-                if(i % 2 == 0)
-                {
+                if (i % 2 == 0)
                     //label onzichtbaarmaken.
                     lblKlik.Visibility = Visibility.Hidden;
-                }
                 else
-                {
                     //label tonen.
                     lblKlik.Visibility = Visibility.Visible;
-                }
             }
         }
 
@@ -68,11 +55,11 @@ namespace DataBaseMuziek
             if (i >= 3)
             {
                 //Nieuw scherm aanmaken en tonen.
-                Login login = new Login();
+                var login = new Login();
                 login.Show();
 
                 //Huidig scherm sluiten.
-                this.Close();
+                Close();
             }
         }
     }

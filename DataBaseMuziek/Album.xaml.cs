@@ -1,32 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace DataBaseMuziek
 {
     /// <summary>
-    /// Interaction logic for Album.xaml
+    ///     Interaction logic for Album.xaml
     /// </summary>
     public partial class Album : Window
     {
+        //List aanmaken.
+        private readonly List<album> LijstMetAlbums = new List<album>();
+
         public Album()
         {
             InitializeComponent();
             ListboxInvullen();
         }
-
-        //List aanmaken.
-        List<album> LijstMetAlbums = new List<album>();
 
         private void ListboxInvullen()
         {
@@ -62,7 +53,7 @@ namespace DataBaseMuziek
                 if (txbAlbum.Text != "")
                 {
                     //Klasse aanmaken.
-                    album _album = new album();
+                    var _album = new album();
 
                     //Klasse variabelen invullen.
                     _album.Album = txbAlbum.Text;
@@ -76,11 +67,12 @@ namespace DataBaseMuziek
                 else
                 {
                     //Melding tonen wanneer niet alles is ingevuld.
-                    MessageBox.Show("U heeft geen album ingevuld, gelieve alles in te vullen.", "Geen invoer", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("U heeft geen album ingevuld, gelieve alles in te vullen.", "Geen invoer",
+                        MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
             //Melding tonen wanneer er iets niet klopt.
-            catch(Exception error) 
+            catch (Exception error)
             {
                 //Melding tonen.
                 MessageBox.Show(error.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -93,13 +85,14 @@ namespace DataBaseMuziek
             try
             {
                 //Vragen aan de gebruiker of ze zeker zijn van hun keuze.
-                var check = MessageBox.Show("Bent u zeker dat u deze gegevens wilt wijzigen?", "Bent u zeker?", MessageBoxButton.YesNo);
+                var check = MessageBox.Show("Bent u zeker dat u deze gegevens wilt wijzigen?", "Bent u zeker?",
+                    MessageBoxButton.YesNo);
 
                 //Controleren of de gebruiker zeker is.
                 if (check == MessageBoxResult.Yes)
                 {
                     //Klasse aanmaken.
-                    album _album = new album();
+                    var _album = new album();
 
                     //Klasse variabelen invullen.
                     _album.Album = txbAlbum.Text;
@@ -124,10 +117,8 @@ namespace DataBaseMuziek
         {
             //Controleren of er iets is geselecteerd.
             if (lsbAlbums.SelectedIndex != -1)
-            {
                 //Textbox invullen met geselecteerde album.
                 txbAlbum.Text = LijstMetAlbums[lsbAlbums.SelectedIndex].Album;
-            }
         }
 
         private void btnVerwijderen_Click(object sender, RoutedEventArgs e)
@@ -139,7 +130,8 @@ namespace DataBaseMuziek
                 if (lsbAlbums.SelectedIndex != -1)
                 {
                     //Vragen of de gebruiker zeker is van zijn keuze.
-                    var check = MessageBox.Show($"Bent u zeker dat u {txbAlbum.Text} wilt verwijderen?", "Bent u zeker?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    var check = MessageBox.Show($"Bent u zeker dat u {txbAlbum.Text} wilt verwijderen?",
+                        "Bent u zeker?", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                     //Controleren of de gebruiker zeker is.
                     if (check == MessageBoxResult.Yes)
@@ -163,12 +155,11 @@ namespace DataBaseMuziek
         private void btnTerug_Click(object sender, RoutedEventArgs e)
         {
             //Nieuw scherm aanmaken en tonen.
-            Muziek muziek = new Muziek();
+            var muziek = new Muziek();
             muziek.Show();
 
             //Huidig scherm sluiten.
-            this.Close();
+            Close();
         }
-
     }
 }
